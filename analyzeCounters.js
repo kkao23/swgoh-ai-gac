@@ -12,7 +12,7 @@ function categorize(percentage) {
   return "long shot";
 }
 
-function processDefenseFile(filePath, excludedLeads) {
+function processDefenseFile(filePath, excludedLeads, usedUnits) {
   const raw = fs.readFileSync(filePath, "utf-8");
   const json = JSON.parse(raw);
   const battles = json.data.battles.filter(
@@ -22,6 +22,10 @@ function processDefenseFile(filePath, excludedLeads) {
   // Build categorized counter list
   const counters = [];
   for (const battle of battles) {
+    // Skip battles that use units already committed elsewhere
+    if (usedUnits && battle.attackMemberIds.some((id) => usedUnits.has(id))) {
+      continue;
+    }
     counters.push({
       attackLeadId: battle.attackLeadId,
       attackMemberIds: battle.attackMemberIds,
@@ -50,17 +54,25 @@ function main() {
     ...(unavailable.defensiveTeams || []),
     ...(unavailable.usedTeams || []),
   ]);
-
-  const files = fs
-    .readdirSync(DEFENSES_DIR)
-    .filter((f) => f.endsWith(".json"));
+  const usedUnits = new Set(unavailable.usedUnits || []);
 
   const output = {};
 
-  for (const file of files) {
-    const filePath = path.join(DEFENSES_DIR, file);
-    const defenseName = path.basename(file, ".json");
-    output[defenseName] = processDefenseFile(filePath, excludedLeads);
+  // Scan defenses/top/ and defenses/bottom/ subdirectories
+  for (const zone of ["top", "bottom"]) {
+    const zoneDir = path.join(DEFENSES_DIR, zone);
+    if (!fs.existsSync(zoneDir)) continue;
+
+    const files = fs
+      .readdirSync(zoneDir)
+      .filter((f) => f.endsWith(".json"));
+
+    for (const file of files) {
+      const filePath = path.join(zoneDir, file);
+      const defenseName = path.basename(file, ".json");
+      const key = `${zone}/${defenseName}`;
+      output[key] = processDefenseFile(filePath, excludedLeads, usedUnits);
+    }
   }
 
   console.log(JSON.stringify(output, null, 2));
