@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const DATA_DIR = path.join(__dirname, "popular");
+const ATTACKERS_DIR = path.join(__dirname, "attackers");
 
 // ===========================================================================
 // Shared analysis (same as scoreDefenses.js + scoreAttackers.js)
@@ -126,34 +127,45 @@ function main() {
 
   const maxDefScore = Math.max(...Object.values(defScores));
 
-  // --- Compute offense scores ---
+  // --- Compute offense scores from attackers/ folder ---
+  const attackerFiles = fs.readdirSync(ATTACKERS_DIR).filter((f) => f.endsWith(".json"));
   const attackers = {};
 
-  for (const [defName, counters] of Object.entries(allCounters)) {
-    const defScore = defScores[defName];
-    if (defScore === undefined) continue;
+  for (const file of attackerFiles) {
+    const raw = fs.readFileSync(path.join(ATTACKERS_DIR, file), "utf-8");
+    const json = JSON.parse(raw);
+    const attackLeadId = json.data.battles[0]?.attackLeadId;
+    if (!attackLeadId) continue;
 
-    const groups = {};
-    for (const c of counters) {
-      const lead = c.attackLeadId;
-      if (!groups[lead]) groups[lead] = [];
-      groups[lead].push(c);
+    const battles = json.data.battles.filter(
+      (b) => b.count >= 10 && b.percentage >= 0.2
+    );
+
+    const byDef = {};
+    for (const b of battles) {
+      const defId = b.defenseLeadId;
+      if (!byDef[defId]) byDef[defId] = [];
+      byDef[defId].push(b);
     }
 
-    for (const [lead, items] of Object.entries(groups)) {
-      const totalBattles = items.reduce((s, c) => s + c.count, 0);
+    const wins = [];
+    for (const [defId, items] of Object.entries(byDef)) {
+      const defScore = defScores[defId];
+      if (defScore === undefined) continue;
+
+      const totalBattles = items.reduce((s, b) => s + b.count, 0);
       if (totalBattles < 50) continue;
-      const bestPct = Math.max(...items.map((c) => c.percentage));
-      if (!attackers[lead]) attackers[lead] = [];
-      attackers[lead].push({ defense: defName, defScore, winRate: bestPct });
+
+      const bestPct = Math.max(...items.map((b) => b.percentage));
+      wins.push({ defense: defId, defScore, winRate: bestPct });
     }
+
+    if (wins.length > 0) attackers[attackLeadId] = wins;
   }
 
   const offScores = {};
   for (const [lead, wins] of Object.entries(attackers)) {
-    if (wins.length > 0) {
-      offScores[lead] = offenseScore(wins, maxDefScore);
-    }
+    offScores[lead] = offenseScore(wins, maxDefScore);
   }
 
   const maxOffScore = Math.max(...Object.values(offScores));

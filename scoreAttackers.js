@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const DATA_DIR = path.join(__dirname, "popular");
+const ATTACKERS_DIR = path.join(__dirname, "attackers");
 
 // ---------------------------------------------------------------------------
 // Load & defense scoring (same as scoreDefenses.js)
@@ -130,30 +131,41 @@ function main() {
 
   const maxDefScore = Math.max(...Object.values(defenseScores).filter((s) => s !== null));
 
-  // Step 2: build reverse index — for each attacking lead, list defenses beaten
+  // Step 2: load attacker data from attackers/ folder
+  const attackerFiles = fs.readdirSync(ATTACKERS_DIR).filter((f) => f.endsWith(".json"));
   const attackers = {};
 
-  for (const [defName, counters] of Object.entries(allCounters)) {
-    const defScore = defenseScores[defName];
-    if (defScore === null) continue; // skip insufficient-data defenses
+  for (const file of attackerFiles) {
+    const raw = fs.readFileSync(path.join(ATTACKERS_DIR, file), "utf-8");
+    const json = JSON.parse(raw);
+    const attackLeadId = json.data.battles[0]?.attackLeadId;
+    if (!attackLeadId) continue;
 
-    // Group attacking comps by lead
-    const groups = {};
-    for (const c of counters) {
-      const lead = c.attackLeadId;
-      if (!groups[lead]) groups[lead] = [];
-      groups[lead].push(c);
+    const battles = json.data.battles.filter(
+      (b) => b.count >= 10 && b.percentage >= 0.2
+    );
+
+    // Group by defenseLeadId, take best win rate across all comps
+    const byDef = {};
+    for (const b of battles) {
+      const defId = b.defenseLeadId;
+      if (!byDef[defId]) byDef[defId] = [];
+      byDef[defId].push(b);
     }
 
-    for (const [lead, items] of Object.entries(groups)) {
-      const totalBattles = items.reduce((s, c) => s + c.count, 0);
+    const wins = [];
+    for (const [defId, items] of Object.entries(byDef)) {
+      const defScore = defenseScores[defId];
+      if (defScore === null || defScore === undefined) continue;
+
+      const totalBattles = items.reduce((s, b) => s + b.count, 0);
       if (totalBattles < 50) continue;
 
-      // Best win rate across comps (duplicate-comp rule: if any comp works, the lead works)
-      const bestPct = Math.max(...items.map((c) => c.percentage));
-      if (!attackers[lead]) attackers[lead] = [];
-      attackers[lead].push({ defense: defName, defScore, winRate: bestPct, battles: totalBattles });
+      const bestPct = Math.max(...items.map((b) => b.percentage));
+      wins.push({ defense: defId, defScore, winRate: bestPct, battles: totalBattles });
     }
+
+    if (wins.length > 0) attackers[attackLeadId] = wins;
   }
 
   // Step 3: compute offense scores
