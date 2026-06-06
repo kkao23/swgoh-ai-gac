@@ -1,0 +1,1772 @@
+{
+    "data": {
+        "totalCount": 454,
+        "avgBanners": 48.768722466960355,
+        "avgBannersWinsOnly": 55.58793969849246,
+        "percentage": 0.8766519823788547,
+        "battles": [
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "JEDIKNIGHTCAL",
+                    "JEDIKNIGHTLUKE"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 84,
+                "avgBanners": 54.95238095238095,
+                "avgBannersWinsOnly": 55.6144578313253,
+                "percentage": 0.9880952380952381
+            },
+            {
+                "attackLeadId": "CEREJUNDA",
+                "attackMemberIds": [
+                    "MAULS7",
+                    "TARONMALICOS"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 34,
+                "avgBanners": 53.0,
+                "avgBannersWinsOnly": 56.3125,
+                "percentage": 0.9411764705882353
+            },
+            {
+                "attackLeadId": "QUEENAMIDALA",
+                "attackMemberIds": [
+                    "MASTERQUIGON",
+                    "PADAWANOBIWAN"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 29,
+                "avgBanners": 56.96551724137931,
+                "avgBannersWinsOnly": 56.96551724137931,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GREATMOTHERS",
+                "attackMemberIds": [
+                    "MORGANELSBETH",
+                    "NIGHTSISTERSPIRIT"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 26,
+                "avgBanners": 52.53846153846154,
+                "avgBannersWinsOnly": 56.875,
+                "percentage": 0.9230769230769231
+            },
+            {
+                "attackLeadId": "THIRDSISTER",
+                "attackMemberIds": [
+                    "GRANDINQUISITOR",
+                    "SEVENTHSISTER"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 26,
+                "avgBanners": 50.80769230769231,
+                "avgBannersWinsOnly": 55.041666666666664,
+                "percentage": 0.9230769230769231
+            },
+            {
+                "attackLeadId": "DASHRENDAR",
+                "attackMemberIds": [
+                    "CHEWBACCALEGENDARY",
+                    "HANSOLO"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 20,
+                "avgBanners": 49.55,
+                "avgBannersWinsOnly": 54.94444444444444,
+                "percentage": 0.9
+            },
+            {
+                "attackLeadId": "SATELESHAN",
+                "attackMemberIds": [
+                    "BASTILASHAN",
+                    "JEDIKNIGHTREVAN"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 18,
+                "avgBanners": 53.0,
+                "avgBannersWinsOnly": 56.11764705882353,
+                "percentage": 0.9444444444444444
+            },
+            {
+                "attackLeadId": "BAYLANSKOLL",
+                "attackMemberIds": [
+                    "MARROK",
+                    "SHINHATI"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 13,
+                "avgBanners": 56.61538461538461,
+                "avgBannersWinsOnly": 56.61538461538461,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "MANDALORBOKATAN",
+                "attackMemberIds": [
+                    "IG12",
+                    "PAZVIZSLA"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 13,
+                "avgBanners": 54.07692307692308,
+                "avgBannersWinsOnly": 54.07692307692308,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "MANDALORBOKATAN",
+                "attackMemberIds": [
+                    "IG12",
+                    "THEMANDALORIANBESKARARMOR"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 13,
+                "avgBanners": 54.15384615384615,
+                "avgBannersWinsOnly": 54.15384615384615,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "JABBATHEHUTT",
+                "attackMemberIds": [
+                    "BOUSHH",
+                    "KRRSANTAN"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 12,
+                "avgBanners": 56.75,
+                "avgBannersWinsOnly": 56.75,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "WAMPA",
+                "attackMemberIds": [],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 10,
+                "avgBanners": 52.3,
+                "avgBannersWinsOnly": 58.0,
+                "percentage": 0.9
+            },
+            {
+                "attackLeadId": "GENERALSKYWALKER",
+                "attackMemberIds": [
+                    "CT5555",
+                    "CT7567"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 8,
+                "avgBanners": 26.125,
+                "avgBannersWinsOnly": 51.5,
+                "percentage": 0.5
+            },
+            {
+                "attackLeadId": "CEREJUNDA",
+                "attackMemberIds": [
+                    "KYLORENUNMASKED",
+                    "TARONMALICOS"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 7,
+                "avgBanners": 56.285714285714285,
+                "avgBannersWinsOnly": 56.285714285714285,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "HERMITYODA",
+                    "JEDIKNIGHTLUKE"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 6,
+                "avgBanners": 54.166666666666664,
+                "avgBannersWinsOnly": 54.166666666666664,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "CEREJUNDA",
+                "attackMemberIds": [
+                    "FULCRUMAHSOKA",
+                    "TARONMALICOS"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 5,
+                "avgBanners": 56.0,
+                "avgBannersWinsOnly": 56.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "HERMITYODA",
+                    "JEDIKNIGHTCAL"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 5,
+                "avgBanners": 52.6,
+                "avgBannersWinsOnly": 52.6,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GREATMOTHERS",
+                "attackMemberIds": [
+                    "MERRIN",
+                    "MORGANELSBETH"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 5,
+                "avgBanners": 45.0,
+                "avgBannersWinsOnly": 56.0,
+                "percentage": 0.8
+            },
+            {
+                "attackLeadId": "MANDALORBOKATAN",
+                "attackMemberIds": [
+                    "PAZVIZSLA",
+                    "THEMANDALORIANBESKARARMOR"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 4,
+                "avgBanners": 53.25,
+                "avgBannersWinsOnly": 53.25,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "STRANGER",
+                "attackMemberIds": [
+                    "MAULHATEFUELED",
+                    "STARKILLER"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 4,
+                "avgBanners": 54.75,
+                "avgBannersWinsOnly": 54.75,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "STORMTROOPERLUKE",
+                "attackMemberIds": [
+                    "PRINCESSLEIA",
+                    "STORMTROOPERHAN"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 4,
+                "avgBanners": 42.5,
+                "avgBannersWinsOnly": 56.333333333333336,
+                "percentage": 0.75
+            },
+            {
+                "attackLeadId": "COMMANDERLUKESKYWALKER",
+                "attackMemberIds": [
+                    "CHEWBACCALEGENDARY",
+                    "HANSOLO"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 4,
+                "avgBanners": 28.0,
+                "avgBannersWinsOnly": 55.5,
+                "percentage": 0.5
+            },
+            {
+                "attackLeadId": "JEDIMASTERKENOBI",
+                "attackMemberIds": [
+                    "COMMANDERAHSOKA",
+                    "GENERALKENOBI"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 3,
+                "avgBanners": 53.333333333333336,
+                "avgBannersWinsOnly": 53.333333333333336,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "JEDIMASTERMACEWINDU",
+                "attackMemberIds": [
+                    "DEPABILLABA",
+                    "VANGUARDTEMPLEGUARD"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 3,
+                "avgBanners": 54.333333333333336,
+                "avgBannersWinsOnly": 54.333333333333336,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "CEREJUNDA",
+                "attackMemberIds": [
+                    "CALKESTIS",
+                    "TARONMALICOS"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 3,
+                "avgBanners": 36.666666666666664,
+                "avgBannersWinsOnly": 54.5,
+                "percentage": 0.6666666666666666
+            },
+            {
+                "attackLeadId": "MOTHERTALZIN",
+                "attackMemberIds": [
+                    "MERRIN",
+                    "NIGHTSISTERZOMBIE"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 3,
+                "avgBanners": 36.0,
+                "avgBannersWinsOnly": 54.0,
+                "percentage": 0.6666666666666666
+            },
+            {
+                "attackLeadId": "KELLERANBEQ",
+                "attackMemberIds": [
+                    "JOCASTANU",
+                    "SHAAKTI"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 3,
+                "avgBanners": 17.333333333333332,
+                "avgBannersWinsOnly": 51.0,
+                "percentage": 0.3333333333333333
+            },
+            {
+                "attackLeadId": "DARTHREVAN",
+                "attackMemberIds": [
+                    "BASTILASHANDARK",
+                    "DARTHMALAK"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 3,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "GENERALSKYWALKER",
+                "attackMemberIds": [
+                    "ARCTROOPER501ST",
+                    "CT210408"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 3,
+                "avgBanners": 0.3333333333333333,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "BOSSNASS",
+                "attackMemberIds": [
+                    "GUNGANPHALANX",
+                    "JARJARBINKS"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "DOCTORAPHRA",
+                "attackMemberIds": [
+                    "BT1",
+                    "IG90"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 54.5,
+                "avgBannersWinsOnly": 54.5,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "GRANDMASTERYODA",
+                    "JEDIKNIGHTCAL"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 52.0,
+                "avgBannersWinsOnly": 52.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "JEDIKNIGHTCAL",
+                    "JEDIKNIGHTREVAN"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 55.0,
+                "avgBannersWinsOnly": 55.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "JEDIKNIGHTCAL",
+                    "JOLEEBINDO"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 55.5,
+                "avgBannersWinsOnly": 55.5,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GREATMOTHERS",
+                "attackMemberIds": [
+                    "DEATHTROOPERPERIDEA",
+                    "MORGANELSBETH"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "SATELESHAN",
+                "attackMemberIds": [
+                    "JEDIKNIGHTREVAN",
+                    "JOLEEBINDO"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "SUPREMELEADERKYLOREN",
+                "attackMemberIds": [
+                    "DARKREY",
+                    "GENERALHUX"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "SUPREMELEADERKYLOREN",
+                "attackMemberIds": [
+                    "DARKREY",
+                    "KYLORENUNMASKED"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "THIRDSISTER",
+                "attackMemberIds": [
+                    "FIFTHBROTHER",
+                    "GRANDINQUISITOR"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 53.0,
+                "avgBannersWinsOnly": 53.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "DARTHREVAN",
+                "attackMemberIds": [
+                    "MISSIONVAO",
+                    "ZAALBAR"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 26.0,
+                "avgBannersWinsOnly": 52.0,
+                "percentage": 0.5
+            },
+            {
+                "attackLeadId": "DARTHMALGUS",
+                "attackMemberIds": [
+                    "DARTHMALAK",
+                    "DARTHREVAN"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "DARTHREVAN",
+                "attackMemberIds": [
+                    "DARTHMALAK",
+                    "DARTHMALGUS"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "MOFFGIDEONS3",
+                "attackMemberIds": [
+                    "MOFFGIDEONS1",
+                    "SCOUTTROOPER_V3"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 2,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "ADMIRALRADDUS",
+                "attackMemberIds": [
+                    "CASSIANANDOR",
+                    "JYNERSO"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 54.0,
+                "avgBannersWinsOnly": 54.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "BOSSNASS",
+                "attackMemberIds": [
+                    "CAPTAINTARPALS",
+                    "JARJARBINKS"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "CASSIANUNDERCOVER",
+                "attackMemberIds": [
+                    "CINTA",
+                    "VEL"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "CC2224",
+                "attackMemberIds": [
+                    "CAPTAINREX",
+                    "KIX"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 56.0,
+                "avgBannersWinsOnly": 56.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "CEREJUNDA",
+                "attackMemberIds": [
+                    "REYJEDITRAINING",
+                    "TARONMALICOS"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 54.0,
+                "avgBannersWinsOnly": 54.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "DASHRENDAR",
+                "attackMemberIds": [
+                    "HONDO",
+                    "YOUNGCHEWBACCA"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 51.0,
+                "avgBannersWinsOnly": 51.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "EMPERORPALPATINE",
+                "attackMemberIds": [
+                    "MARAJADE",
+                    "VADERDUELSEND"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 54.0,
+                "avgBannersWinsOnly": 54.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GENERALSKYWALKER",
+                "attackMemberIds": [
+                    "ARCTROOPER501ST",
+                    "CT5555"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 49.0,
+                "avgBannersWinsOnly": 49.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GENERALSKYWALKER",
+                "attackMemberIds": [
+                    "ARCTROOPER501ST",
+                    "CT7567"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 50.0,
+                "avgBannersWinsOnly": 50.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GLAHSOKATANO",
+                "attackMemberIds": [
+                    "EZRAEXILE",
+                    "PADAWANSABINE"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GLHONDO",
+                "attackMemberIds": [
+                    "BRUTUS",
+                    "CAPTAINSILVO"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GLHONDO",
+                "attackMemberIds": [
+                    "CAPTAINSILVO",
+                    "VANE"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GLLEIA",
+                "attackMemberIds": [
+                    "CAPTAINDROGAN",
+                    "R2D2_LEGENDARY"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GLREY",
+                "attackMemberIds": [
+                    "BENSOLO",
+                    "CALKESTIS"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 55.0,
+                "avgBannersWinsOnly": 55.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GLREY",
+                "attackMemberIds": [
+                    "BENSOLO",
+                    "REYJEDITRAINING"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 55.0,
+                "avgBannersWinsOnly": 55.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDINQUISITOR",
+                "attackMemberIds": [
+                    "NINTHSISTER",
+                    "SEVENTHSISTER"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 54.0,
+                "avgBannersWinsOnly": 54.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "GRANDMASTERYODA",
+                    "JEDIKNIGHTLUKE"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 53.0,
+                "avgBannersWinsOnly": 53.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "GRANDMASTERYODA",
+                    "OLDBENKENOBI"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 54.0,
+                "avgBannersWinsOnly": 54.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "JEDIKNIGHTCAL",
+                    "SHAAKTI"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "JEDIKNIGHTCAL"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 58.0,
+                "avgBannersWinsOnly": 58.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "JEDIKNIGHTLUKE",
+                    "LUMINARAUNDULI"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 55.0,
+                "avgBannersWinsOnly": 55.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GRANDMOFFTARKIN",
+                "attackMemberIds": [
+                    "DISGUISEDCLONETROOPER",
+                    "SCORCH"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 55.0,
+                "avgBannersWinsOnly": 55.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GREATMOTHERS",
+                "attackMemberIds": [
+                    "ASAJJDARKDISCIPLE",
+                    "MORGANELSBETH"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 55.0,
+                "avgBannersWinsOnly": 55.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "GREATMOTHERS",
+                "attackMemberIds": [
+                    "MORGANELSBETH",
+                    "NIGHTTROOPER"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "JEDIKNIGHTLUKE",
+                "attackMemberIds": [
+                    "GENERALKENOBI",
+                    "GRANDMASTERYODA"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 55.0,
+                "avgBannersWinsOnly": 55.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "JEDIKNIGHTLUKE",
+                "attackMemberIds": [
+                    "HERMITYODA",
+                    "JOLEEBINDO"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 55.0,
+                "avgBannersWinsOnly": 55.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "JEDIMASTERMACEWINDU",
+                "attackMemberIds": [
+                    "AAYLASECURA",
+                    "DEPABILLABA"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 56.0,
+                "avgBannersWinsOnly": 56.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "JEDIMASTERMACEWINDU",
+                "attackMemberIds": [
+                    "DEPABILLABA",
+                    "JOCASTANU"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 54.0,
+                "avgBannersWinsOnly": 54.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "MAZKANATA",
+                "attackMemberIds": [
+                    "HONDO",
+                    "SM33"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 54.0,
+                "avgBannersWinsOnly": 54.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "MAZKANATA",
+                "attackMemberIds": [
+                    "ITHANO",
+                    "SM33"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 55.0,
+                "avgBannersWinsOnly": 55.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "MAZKANATA",
+                "attackMemberIds": [
+                    "KIX",
+                    "SM33"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 56.0,
+                "avgBannersWinsOnly": 56.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "QUIGONJINN",
+                "attackMemberIds": [
+                    "ANAKINKNIGHT",
+                    "KIADIMUNDI"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 54.0,
+                "avgBannersWinsOnly": 54.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "SATELESHAN",
+                "attackMemberIds": [
+                    "BASTILASHAN",
+                    "JUHANI"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 56.0,
+                "avgBannersWinsOnly": 56.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "STRANGER",
+                "attackMemberIds": [
+                    "MAULS7",
+                    "STARKILLER"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 52.0,
+                "avgBannersWinsOnly": 52.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "THIRDSISTER",
+                "attackMemberIds": [
+                    "EIGHTHBROTHER",
+                    "GRANDINQUISITOR"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 57.0,
+                "avgBannersWinsOnly": 57.0,
+                "percentage": 1.0
+            },
+            {
+                "attackLeadId": "BOBAFETTSCION",
+                "attackMemberIds": [
+                    "ASAJJDARKDISCIPLE",
+                    "FENNECSHAND"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "DARTHBANE",
+                "attackMemberIds": [
+                    "COUNTDOOKU"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "DARTHBANE",
+                "attackMemberIds": [
+                    "FOSITHTROOPER"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "DARTHBANE",
+                "attackMemberIds": [
+                    "SITHTROOPER"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "DARTHMALGUS",
+                "attackMemberIds": [
+                    "BASTILASHANDARK",
+                    "DARTHMALAK"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "DARTHTRAYA",
+                "attackMemberIds": [
+                    "DARTHNIHILUS",
+                    "SAVAGEOPRESS"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 1.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "EMPERORPALPATINE",
+                "attackMemberIds": [
+                    "MARAJADE",
+                    "STARKILLER"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "FINN",
+                "attackMemberIds": [
+                    "EPIXFINN",
+                    "ZORIIBLISS_V2"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "GRANDMASTERLUKE",
+                "attackMemberIds": [
+                    "AHSOKATANO",
+                    "KELLERANBEQ"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 1.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "HERASYNDULLAS3",
+                "attackMemberIds": [
+                    "CAPTAINREX",
+                    "EZRABRIDGERS3"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "JEDIKNIGHTLUKE",
+                "attackMemberIds": [
+                    "EZRAEXILE",
+                    "GRANDMASTERYODA"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "JEDIKNIGHTREVAN",
+                "attackMemberIds": [
+                    "BASTILASHAN",
+                    "GRANDMASTERYODA"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "JEDIMASTERKENOBI",
+                "attackMemberIds": [
+                    "AHSOKATANO",
+                    "COMMANDERAHSOKA"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "MAULS7",
+                "attackMemberIds": [
+                    "CANDEROUSORDO",
+                    "THEMANDALORIANBESKARARMOR"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "MAULS7",
+                "attackMemberIds": [
+                    "GARSAXON",
+                    "IMPERIALSUPERCOMMANDO"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "MOTHERTALZIN",
+                "attackMemberIds": [
+                    "DAKA",
+                    "MERRIN"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 2.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "PADMEAMIDALA",
+                "attackMemberIds": [
+                    "AHSOKATANO",
+                    "GRANDMASTERYODA"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "SITHPALPATINE",
+                "attackMemberIds": [
+                    "SITHTROOPER",
+                    "WATTAMBOR"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "SITHPALPATINE",
+                "attackMemberIds": [
+                    "WATTAMBOR"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            },
+            {
+                "attackLeadId": "STRANGER",
+                "attackMemberIds": [
+                    "ASAJVENTRESS",
+                    "EIGHTHBROTHER"
+                ],
+                "attackReinforcementIds": [],
+                "defenseLeadId": "MAZKANATA",
+                "defenseMemberIds": [
+                    "BRUTUS",
+                    "QUIGGOLD"
+                ],
+                "defenseReinforcementIds": [],
+                "count": 1,
+                "avgBanners": 0.0,
+                "avgBannersWinsOnly": 0,
+                "percentage": 0.0
+            }
+        ],
+        "performance": {
+            "queryTime": 0.07252287864685059
+        }
+    },
+    "message": null,
+    "total_count": null,
+    "error_key": null
+}
