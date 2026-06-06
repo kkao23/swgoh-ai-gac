@@ -1,0 +1,62 @@
+Great question. Let me work through the structure first, then the strategy.
+
+   ---
+
+   ### The board
+
+   Top (5 slots) ── 1000 pts ── 200 pts/slot
+   Bottom Right (5 slots) ── 550 pts ── 110 pts/slot ── GATES Bottom Left
+   Bottom Left (5 slots) ── 550 pts ── 110 pts/slot ── only reachable after BR
+
+   Key insight: BR isn't worth 550 — it's worth 1,100, because if you hold BR, BL is never even touched. A BR hold
+   denies 2× the points of a top hold.
+
+   ---
+
+   ### Three strategies
+
+   A) The gatekeeper wall (my recommendation)
+
+   Top:  6,  7,  8,  9, 10
+   BR:   1,  2,  3,  4,  5   ← wall
+   BL:  11, 12, 13, 14, 15
+
+   Put your 5 best in BR. The opponent faces an absolute wall before they can touch BL. If they can't crack it, they
+   lose 1,100 points — more than top is worth. Top is defended by teams 6-10, still very strong. Even if they clear top
+    (1,000 pts), they're stuck.
+
+   The opponent's dilemma: they can throw their best attackers at top for 1,000 pts, but then their remaining attackers
+    can't beat your wall. Or they can throw everything at the wall — and then top holds too.
+
+   B) Balanced split
+
+   Top:  1, 3, 5, 7, 9
+   BR:   2, 4, 6, 8, 10
+   BL:  11, 12, 13, 14, 15
+
+   Both premium zones get top-tier teams interleaved. The opponent can't focus-fire one zone — every zone has a mix of
+   must-burn and manageable. If they overcommit to top, BR holds. If they overcommit to BR, top holds. This is harder
+   for the opponent to solve than A, but gives up the pure wall.
+
+   C) Top-heavy (common but wrong)
+
+   Top:  1,  2,  3,  4,  5
+   BR:   6,  7,  8,  9, 10
+   BL:  11, 12, 13, 14, 15
+
+   Over-defends the 1,000 pt zone but leaves BR beatable. Opponent clears top with their best, then walks through BR
+   (teams 6-10) with their second-best, then BL with their third-best. They get 2,100. This is what most players do
+   instinctively — and it's wrong.
+
+   ---
+
+   ### Why A wins
+
+   The gating structure means BR is the leverage point. A single hold in BR denies 1,100 points. A single hold in top
+   denies only 1,000. And a BR hold also denies BL, so the opponent's leftover attackers have nothing to swing at.
+
+   The opponent's counterplay to A is to ignore BR entirely and just clear top — but then they cap at 1,000 points out
+   of 2,100 possible, and you've defended the bottom half of the board with zero effort spent.
+
+   The only case where C is better is if the opponent is so outmatched that they can clear everything regardless of
+   placement — but then placement doesn't matter anyway.
