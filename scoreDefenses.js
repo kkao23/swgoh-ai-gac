@@ -10,17 +10,21 @@ const DATA_DIR = path.join(__dirname, "popular");
 function processDefenseFile(filePath) {
   const raw = fs.readFileSync(filePath, "utf-8");
   const json = JSON.parse(raw);
+  const defenseId = json.data.battles[0]?.defenseLeadId;
   const battles = json.data.battles.filter(
     (b) => b.count >= 10 && b.percentage >= 0.2
   );
 
-  return battles.map((battle) => ({
-    attackLeadId: battle.attackLeadId,
-    attackMemberIds: battle.attackMemberIds,
-    percentage: battle.percentage,
-    avgBanners: battle.avgBanners,
-    count: battle.count,
-  }));
+  return {
+    defenseId,
+    battles: battles.map((battle) => ({
+      attackLeadId: battle.attackLeadId,
+      attackMemberIds: battle.attackMemberIds,
+      percentage: battle.percentage,
+      avgBanners: battle.avgBanners,
+      count: battle.count,
+    })),
+  };
 }
 
 function loadAllCounters() {
@@ -31,8 +35,8 @@ function loadAllCounters() {
 
   for (const file of files) {
     const filePath = path.join(DATA_DIR, file);
-    const name = path.basename(file, ".json");
-    allCounters[name] = processDefenseFile(filePath);
+    const { defenseId, battles } = processDefenseFile(filePath);
+    if (defenseId) allCounters[defenseId] = battles;
   }
   return allCounters;
 }
@@ -153,8 +157,8 @@ function totalBattles(entries) {
 
 function score({ strong, uncomfortable, weak }) {
   return uniqueLeads(strong) * 50
-       + uniqueLeads(uncomfortable) * 20
-       + uniqueLeads(weak) * 10;
+       - uniqueLeads(uncomfortable) * 5
+       - uniqueLeads(weak) * 15;
 }
 
 // ---------------------------------------------------------------------------
