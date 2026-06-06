@@ -4,7 +4,7 @@ const path = require("path");
 const DATA_DIR = path.join(__dirname, "popular");
 
 // ---------------------------------------------------------------------------
-// Counter-loading (same logic as analyzeCounters.js)
+// Counter-loading
 // ---------------------------------------------------------------------------
 
 function processDefenseFile(filePath) {
@@ -34,7 +34,6 @@ function loadAllCounters() {
     const name = path.basename(file, ".json");
     allCounters[name] = processDefenseFile(filePath);
   }
-
   return allCounters;
 }
 
@@ -61,7 +60,6 @@ function aggregate(items) {
 }
 
 function analyzeDefense(defName, counters) {
-  // Group by attackLeadId
   const groups = {};
   for (const c of counters) {
     const lead = c.attackLeadId;
@@ -69,7 +67,7 @@ function analyzeDefense(defName, counters) {
     groups[lead].push(c);
   }
 
-  // Total battles per lead (for confidence thresholds)
+  // Total battles per lead + per defense (for confidence thresholds)
   const leadBattles = {};
   let totalDefBattles = 0;
   for (const [lead, items] of Object.entries(groups)) {
@@ -95,7 +93,6 @@ function analyzeDefense(defName, counters) {
       const small = items.filter((c) => c.count <= 500);
       if (small.length > 0) results.push(aggregate(small));
     } else {
-      // Aggregate all (0 or 1 large comp)
       results.push(aggregate(items));
     }
   }
@@ -122,7 +119,42 @@ function analyzeDefense(defName, counters) {
       leadBattles[c.attackLeadId] >= MIN_WEAK
   );
 
-  return { defName, strong, uncomfortable, weakNotable };
+  return { defName, strong, uncomfortable, weakNotable, totalBattles: totalDefBattles };
+}
+
+// ---------------------------------------------------------------------------
+// Scoring
+// ---------------------------------------------------------------------------
+
+function applyDuplicateRule({ strong, uncomfortable, weakNotable }) {
+  const strongLeads = new Set(strong.map((c) => c.attackLeadId));
+
+  const finalStrong = [...strong];
+  const finalUncomfortable = [];
+  const finalWeak = [];
+
+  for (const c of uncomfortable) {
+    strongLeads.has(c.attackLeadId) ? finalStrong.push(c) : finalUncomfortable.push(c);
+  }
+  for (const c of weakNotable) {
+    strongLeads.has(c.attackLeadId) ? finalStrong.push(c) : finalWeak.push(c);
+  }
+
+  return { strong: finalStrong, uncomfortable: finalUncomfortable, weak: finalWeak };
+}
+
+function uniqueLeads(entries) {
+  return new Set(entries.map((c) => c.attackLeadId)).size;
+}
+
+function totalBattles(entries) {
+  return entries.reduce((sum, c) => sum + c.count, 0);
+}
+
+function score({ strong, uncomfortable, weak }) {
+  return uniqueLeads(strong) * 50
+       + uniqueLeads(uncomfortable) * 20
+       + uniqueLeads(weak) * 10;
 }
 
 // ---------------------------------------------------------------------------
@@ -133,50 +165,48 @@ function main() {
   const allCounters = loadAllCounters();
   const defenses = Object.keys(allCounters).sort();
 
+  const rows = [];
+  const insufficient = [];
+
   for (const defName of defenses) {
-    const { strong, uncomfortable, weakNotable } = analyzeDefense(defName, allCounters[defName]);
+    const analysis = analyzeDefense(defName, allCounters[defName]);
 
-    console.log(`── vs ${defName} ──`);
-
-    if (strong.length > 0) {
-      console.log("  Strong counters (>70%):");
-      for (const c of strong) {
-        const members = c.attackMemberIds.length > 0
-          ? c.attackMemberIds.join(", ")
-          : "(solo)";
-        console.log(
-          `    ${c.attackLeadId} + [${members}]  (${(c.percentage * 100).toFixed(0)}%, ${c.avgBanners.toFixed(1)} banners, ${c.count} battles)`
-        );
-      }
-    } else {
-      console.log("  Strong counters (>70%): (none)");
+    if (analysis.totalBattles < 500) {
+      insufficient.push(defName);
+      continue;
     }
 
-    if (uncomfortable.length > 0) {
-      console.log("  Uncomfortable counters (50-70%):");
-      for (const c of uncomfortable) {
-        const members = c.attackMemberIds.length > 0
-          ? c.attackMemberIds.join(", ")
-          : "(solo)";
-        console.log(
-          `    ${c.attackLeadId} + [${members}]  (${(c.percentage * 100).toFixed(0)}%, ${c.avgBanners.toFixed(1)} banners, ${c.count} battles)`
-        );
-      }
-    }
+    const { strong, uncomfortable, weak } = applyDuplicateRule(analysis);
 
-    if (weakNotable.length > 0) {
-      console.log("  Weak but common (<50%, >100 battles):");
-      for (const c of weakNotable) {
-        const members = c.attackMemberIds.length > 0
-          ? c.attackMemberIds.join(", ")
-          : "(solo)";
-        console.log(
-          `    ${c.attackLeadId} + [${members}]  (${(c.percentage * 100).toFixed(0)}%, ${c.avgBanners.toFixed(1)} banners, ${c.count} battles)`
-        );
-      }
-    }
+    rows.push({
+      name: defName,
+      sLeads: uniqueLeads(strong),
+      sBattles: totalBattles(strong),
+      uLeads: uniqueLeads(uncomfortable),
+      uBattles: totalBattles(uncomfortable),
+      wLeads: uniqueLeads(weak),
+      wBattles: totalBattles(weak),
+      score: score({ strong, uncomfortable, weak }),
+    });
+  }
 
-    console.log("");
+  rows.sort((a, b) => b.score - a.score);
+
+  console.log(
+    "Defense              S-Ld  S-Bat    U-Ld  U-Bat    W-Ld  W-Bat     Score"
+  );
+  console.log(
+    "───────              ────  ─────    ────  ─────    ────  ─────     ─────"
+  );
+
+  for (const r of rows) {
+    console.log(
+      `${r.name.padEnd(21)} ${String(r.sLeads).padStart(4)}  ${String(r.sBattles).padStart(5)}    ${String(r.uLeads).padStart(4)}  ${String(r.uBattles).padStart(5)}    ${String(r.wLeads).padStart(4)}  ${String(r.wBattles).padStart(5)}     ${String(r.score).padStart(5)}`
+    );
+  }
+
+  if (insufficient.length > 0) {
+    console.log(`\nInsufficient data (<500 battles): ${insufficient.join(", ")}`);
   }
 }
 
