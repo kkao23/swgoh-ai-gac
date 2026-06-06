@@ -145,3 +145,6 @@ vite.config.ts.timestamp-*
 # SWGOH GAC data
 unavailableTeams.json
 
+/attackers/*
+/defenses/*
+/popular/*
