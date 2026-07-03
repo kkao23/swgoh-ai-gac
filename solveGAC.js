@@ -232,6 +232,47 @@ function solveTopFirst(allDefenses, counters) {
   };
 }
 
+/**
+ * Try to clear all 5 top + 4 of 5 bottom, punting the hardest bottom defense.
+ * Tries each possible punt target and picks the plan with the highest avg win rate.
+ */
+function solveTopAndFourBottom(allDefenses, counters) {
+  const topDefenses = allDefenses.filter((d) => d.startsWith("top/"));
+  const bottomDefenses = allDefenses.filter((d) => d.startsWith("bottom/"));
+
+  let bestPlan = null;
+  let bestScore = -1;
+
+  for (let i = 0; i < bottomDefenses.length; i++) {
+    const punted = bottomDefenses[i];
+    const targets = bottomDefenses.filter((_, j) => j !== i);
+
+    // Solve top first
+    const topResult = backtrackAssign(topDefenses, counters);
+    if (!topResult) continue;
+
+    // Collect units used by top
+    const usedAfterTop = new Set();
+    for (const counter of Object.values(topResult.assignment)) {
+      for (const u of counterUnits(counter)) usedAfterTop.add(u);
+    }
+
+    // Solve 4 bottom with remaining units
+    const bottomResult = backtrackAssign(targets, counters, usedAfterTop);
+    if (!bottomResult) continue;
+
+    const assignment = { ...topResult.assignment, ...bottomResult.assignment };
+    const avg = avgBannersFor(assignment);
+
+    if (avg > bestScore) {
+      bestScore = avg;
+      bestPlan = { assignment, unassigned: [punted], avgBanners: avg, punted };
+    }
+  }
+
+  return bestPlan;
+}
+
 function main() {
   const counters = loadAllCounters();
   const allDefenses = Object.keys(counters);
@@ -259,6 +300,19 @@ function main() {
 
   const planB = solveTopFirst(allDefenses, counters);
   printSolution("B", planB.assignment, counters, planB.unassigned);
+
+  // ----- Plan C: Clear all 5 top + 4 of 5 bottom (punt hardest) -----
+  console.log("\nPLAN C — Top + 4-of-5 Bottom (punts hardest bottom defense)");
+  console.log("-".repeat(60));
+
+  const planC = solveTopAndFourBottom(allDefenses, counters);
+  if (planC) {
+    console.log(`  ⚡ Punted (intentionally skipped): ${planC.punted}`);
+    console.log(`  Avg banners: ${planC.avgBanners.toFixed(1)}\n`);
+    printSolution("C", planC.assignment, counters, planC.unassigned);
+  } else {
+    console.log("  No valid plan found — couldn't clear 4 of 5 bottom after top.\n");
+  }
 }
 
 // ---------------------------------------------------------------------------
