@@ -3,6 +3,10 @@ const path = require("path");
 
 const DATA_DIR = path.join(__dirname, "popular");
 const ATTACKERS_DIR = path.join(__dirname, "attackers");
+const RANKING_PATH = path.join(__dirname, "ranking.json");
+const GLS_PATH = path.join(__dirname, "gls.json");
+
+const WIN_RATE_THRESHOLD = 0.7;
 
 // ===========================================================================
 // Shared analysis (same as scoreDefenses.js + scoreAttackers.js)
@@ -27,64 +31,52 @@ function processDefenseFile(filePath) {
   };
 }
 
-function aggregate(items) {
-  const totalCount = items.reduce((s, c) => s + c.count, 0);
-  return {
-    attackLeadId: items[0].attackLeadId,
-    percentage: items.reduce((s, c) => s + c.percentage * c.count, 0) / totalCount,
-    avgBanners: items.reduce((s, c) => s + c.avgBanners * c.count, 0) / totalCount,
-    count: totalCount,
-    attackMemberIds: items.reduce((b, c) => (c.count > b.count ? c : b)).attackMemberIds,
-  };
-}
+// ---- defense scoring (proportional by battle share) ----
 
-// ---- defense scoring ----
+const MIN_LEAD_BATTLES = 50;
+const STRONG_PER_LEAD = 0.5;    // flat penalty per unique strong counter lead
+const GL_DISCOUNT = 0.5;        // GL counters contribute 50% less proportional penalty
 
-function analyzeDefense(counters) {
+function proportionalDefenseScore(counters, glSet) {
+  // Group by attackLeadId
   const groups = {};
   for (const c of counters) {
-    const lead = c.attackLeadId;
-    if (!groups[lead]) groups[lead] = [];
-    groups[lead].push(c);
+    if (!groups[c.attackLeadId]) groups[c.attackLeadId] = [];
+    groups[c.attackLeadId].push(c);
   }
+
+  // Compute per-lead and total battles
   const leadBattles = {};
   let totalDefBattles = 0;
   for (const [lead, items] of Object.entries(groups)) {
     leadBattles[lead] = items.reduce((s, c) => s + c.count, 0);
     totalDefBattles += leadBattles[lead];
   }
-  const results = [];
-  for (const [, items] of Object.entries(groups)) {
-    const large = items.filter((c) => c.count > 500);
-    if (large.length >= 2) {
-      for (const c of large) results.push({ ...c });
-      const small = items.filter((c) => c.count <= 500);
-      if (small.length > 0) results.push(aggregate(small));
+
+  if (totalDefBattles < 500) return null;
+
+  // Score: each qualifying lead contributes proportionally to its battle share.
+  // GL counters are discounted — burning a GL is less costly for the defender.
+  let score = 0;
+  for (const [lead, items] of Object.entries(groups)) {
+    const lb = leadBattles[lead];
+    if (lb < MIN_LEAD_BATTLES) continue;
+
+    const weightedWR = items.reduce((s, c) => s + c.percentage * c.count, 0) / lb;
+    const weight = lb / totalDefBattles;
+    const isGL = glSet.has(lead);
+
+    if (weightedWR > 0.7) {
+      const mult = isGL ? GL_DISCOUNT : 1;
+      score += STRONG_PER_LEAD + 50 * weight * mult;
+    } else if (weightedWR >= 0.5) {
+      score -= 5 * weight;
     } else {
-      results.push(aggregate(items));
+      score -= 15 * weight;
     }
   }
-  const MIN_STRONG = 200, MIN_UNCOMFORTABLE = 100, MIN_WEAK = 50;
-  const strong = results.filter((c) => c.percentage > 0.7 && leadBattles[c.attackLeadId] >= MIN_STRONG);
-  const uncomfortable = results.filter((c) => c.percentage >= 0.5 && c.percentage <= 0.7 && leadBattles[c.attackLeadId] >= MIN_UNCOMFORTABLE);
-  const weakNotable = results.filter((c) => c.percentage < 0.5 && c.count > 100 && leadBattles[c.attackLeadId] >= MIN_WEAK);
-  return { strong, uncomfortable, weakNotable, totalBattles: totalDefBattles };
-}
 
-function applyDuplicateRule({ strong, uncomfortable, weakNotable }) {
-  const strongLeads = new Set(strong.map((c) => c.attackLeadId));
-  const fStrong = [...strong], fUnc = [], fWeak = [];
-  for (const c of uncomfortable) strongLeads.has(c.attackLeadId) ? fStrong.push(c) : fUnc.push(c);
-  for (const c of weakNotable) strongLeads.has(c.attackLeadId) ? fStrong.push(c) : fWeak.push(c);
-  return { strong: fStrong, uncomfortable: fUnc, weak: fWeak };
-}
-
-function uniqueLeads(entries) {
-  return new Set(entries.map((c) => c.attackLeadId)).size;
-}
-
-function defenseScore({ strong, uncomfortable, weak }) {
-  return uniqueLeads(strong) * 50 - uniqueLeads(uncomfortable) * 5 - uniqueLeads(weak) * 15;
+  return score;
 }
 
 // ---- offense scoring ----
@@ -109,6 +101,9 @@ function offenseScore(wins, maxDefScore) {
 function main() {
   const files = fs.readdirSync(DATA_DIR).filter((f) => f.endsWith(".json"));
 
+  // --- Load Galactic Legends ---
+  const glSet = new Set(JSON.parse(fs.readFileSync(GLS_PATH, "utf-8")));
+
   // --- Compute defense scores ---
   const defScores = {};
   const allCounters = {};
@@ -119,10 +114,9 @@ function main() {
     if (!defenseId) continue;
     allCounters[defenseId] = counters;
 
-    const analysis = analyzeDefense(counters);
-    if (analysis.totalBattles < 500) continue;
-    const { strong, uncomfortable, weak } = applyDuplicateRule(analysis);
-    defScores[defenseId] = defenseScore({ strong, uncomfortable, weak });
+    const score = proportionalDefenseScore(counters, glSet);
+    if (score === null) continue;
+    defScores[defenseId] = Math.round(score * 10) / 10;
   }
 
   const maxDefScore = Math.max(...Object.values(defScores));
@@ -170,7 +164,61 @@ function main() {
 
   const maxOffScore = Math.max(...Object.values(offScores));
 
-  // --- Build unified team list ---
+  // =========================================================================
+  // Popular defense counter mapping (ranking.json)
+  // Uses popular/ data — how attackers perform against the META version of each defense.
+  // =========================================================================
+
+  const MIN_COUNTER_BATTLES = 200;
+
+  const popularDefenses = JSON.parse(fs.readFileSync(RANKING_PATH, "utf-8"));
+  for (const id of popularDefenses) {
+    if (!allCounters[id]) {
+      console.warn(`WARNING: "${id}" from ranking.json has no defense data — it won't be checked for coverage.`);
+    }
+  }
+
+  // popularCounters[defId] = [{ attackerId, winRate, totalBattles }, ...]
+  const popularCounters = {};
+  for (const popDef of popularDefenses) {
+    const counters = allCounters[popDef] || [];
+
+    // Group by attackLeadId, aggregate all variant comps
+    const byAttacker = {};
+    for (const c of counters) {
+      if (!byAttacker[c.attackLeadId]) byAttacker[c.attackLeadId] = [];
+      byAttacker[c.attackLeadId].push(c);
+    }
+
+    popularCounters[popDef] = [];
+    for (const [attackerId, items] of Object.entries(byAttacker)) {
+      const totalBattles = items.reduce((s, c) => s + c.count, 0);
+      if (totalBattles < MIN_COUNTER_BATTLES) continue;
+
+      // Use the best single variant if it has enough battles; otherwise weighted average.
+      // This avoids off-meta comps dragging down the win rate of the main comp.
+      const bestVariant = items.reduce((best, c) => c.percentage > best.percentage ? c : best, items[0]);
+      const winRate = bestVariant.count >= MIN_COUNTER_BATTLES
+        ? bestVariant.percentage
+        : items.reduce((s, c) => s + c.percentage * c.count, 0) / totalBattles;
+
+      if (winRate <= WIN_RATE_THRESHOLD) continue;
+
+      popularCounters[popDef].push({
+        attackerId,
+        winRate,
+        totalBattles,
+      });
+    }
+
+    // Sort best counter first
+    popularCounters[popDef].sort((a, b) => b.winRate - a.winRate);
+  }
+
+  // =========================================================================
+  // Build unified team list
+  // =========================================================================
+
   const allTeams = new Set([
     ...Object.keys(defScores),
     ...Object.keys(offScores),
@@ -181,14 +229,9 @@ function main() {
     const defRaw = defScores[name];
     const offRaw = offScores[name];
 
-    // Normalize: higher = better. Missing data: no def score = 0 (goes to offense),
-    // no off score = same as def score (assume balanced, don't penalize)
     const defQuality = defRaw !== undefined ? 1 - defRaw / maxDefScore : 0;
     const offQuality = offRaw !== undefined ? offRaw / maxOffScore : defQuality;
 
-    // Rank = defQuality × 3 - offQuality
-    // A great defender (0.9) with decent offense (0.5) still beats
-    // a mediocre defender (0.6) with no offense data (0.6)
     const pref = defQuality * 3 - offQuality;
 
     teams.push({ name, defRaw, offRaw, defQuality, offQuality, pref });
@@ -197,9 +240,99 @@ function main() {
   // Sort by defense preference (descending) — top of list = should be on defense
   teams.sort((a, b) => b.pref - a.pref);
 
-  // Allocate: top 15 → defense, rest → offense
-  const defenders = teams.slice(0, 15);
-  const offenders = teams.slice(15);
+  const teamMap = new Map(teams.map((t) => [t.name, t]));
+
+  // =========================================================================
+  // Auto-adjust allocation: ensure every popular defense has a counter on offense
+  // =========================================================================
+
+  const NUM_DEFENSE_SLOTS = 15;
+  const defNames = new Set(teams.slice(0, NUM_DEFENSE_SLOTS).map((t) => t.name));
+  const offNames = new Set(teams.slice(NUM_DEFENSE_SLOTS).map((t) => t.name));
+
+  function coveredPopularDefenses() {
+    const uncovered = [];
+    for (const popDef of popularDefenses) {
+      const counters = popularCounters[popDef] || [];
+      const hasCounter = counters.some((c) => offNames.has(c.attackerId));
+      if (!hasCounter) uncovered.push(popDef);
+    }
+    return uncovered;
+  }
+
+  function countersOnDefense(popDef) {
+    const counters = popularCounters[popDef] || [];
+    return counters.filter((c) => defNames.has(c.attackerId));
+  }
+
+  // Swap loop: greedily move one counter per uncovered defense to offense
+  let changed = true;
+  let swaps = 0;
+  const MAX_SWAPS = 30;
+
+  while (changed && swaps < MAX_SWAPS) {
+    changed = false;
+    const uncovered = coveredPopularDefenses();
+    if (uncovered.length === 0) break;
+
+    for (const popDef of uncovered) {
+      const defCounters = countersOnDefense(popDef);
+      if (defCounters.length === 0) continue; // no viable counter anywhere — flagged later
+
+      // Pick the counter with lowest pref (least wants to be on defense, easiest to give up)
+      defCounters.sort((a, b) => teamMap.get(a.attackerId).pref - teamMap.get(b.attackerId).pref);
+      const moveToOffense = defCounters[0].attackerId;
+
+      // Find the best replacement from offense:
+      // highest pref that is NOT the unique counter for a still-uncovered defense
+      const offArray = [...offNames]
+        .map((n) => teamMap.get(n))
+        .sort((a, b) => b.pref - a.pref);
+
+      let replacement = null;
+      for (const cand of offArray) {
+        let isUniqueForUncovered = false;
+        for (const pd of popularDefenses) {
+          if (!uncovered.includes(pd)) continue;
+
+          // Count how many counters this defense has left on offense (excluding candidate)
+          const pdCounters = (popularCounters[pd] || []).filter(
+            (c) => offNames.has(c.attackerId) && c.attackerId !== cand.name
+          );
+          const allPdCountersOffense = (popularCounters[pd] || []).filter(
+            (c) => offNames.has(c.attackerId)
+          );
+          // If candidate is the ONLY counter for this uncovered defense on offense
+          if (allPdCountersOffense.length === 1 && allPdCountersOffense[0].attackerId === cand.name) {
+            isUniqueForUncovered = true;
+            break;
+          }
+        }
+        if (!isUniqueForUncovered) {
+          replacement = cand.name;
+          break;
+        }
+      }
+
+      // Fallback: if every offense option is a unique counter, just take the highest pref
+      if (!replacement) {
+        replacement = offArray[0].name;
+      }
+
+      // Execute swap
+      defNames.delete(moveToOffense);
+      defNames.add(replacement);
+      offNames.delete(replacement);
+      offNames.add(moveToOffense);
+      changed = true;
+      swaps++;
+      break; // restart loop since sets were mutated
+    }
+  }
+
+  // Build final sorted arrays
+  const defenders = [...defNames].map((n) => teamMap.get(n));
+  const offenders = [...offNames].map((n) => teamMap.get(n));
 
   // Sort defenders by defScore ascending (best defense first) for zone placement
   defenders.sort((a, b) => (a.defRaw ?? 9999) - (b.defRaw ?? 9999));
@@ -223,6 +356,9 @@ function main() {
   }
 
   console.log("=== DEFENSE PLACEMENT ===\n");
+  if (swaps > 0) {
+    console.log(`(Auto-adjusted: ${swaps} swap(s) to ensure meta coverage)\n`);
+  }
   printZone("TOP (5 slots)", 1000, TOP);
   printZone("BOTTOM RIGHT (5 slots, gates BL)", 550, BR);
   printZone("BOTTOM LEFT (5 slots, gated)", 550, BL);
@@ -230,13 +366,139 @@ function main() {
   console.log("\n=== OFFENSE (15 teams) ===");
   console.log("  Team                  DefScore  OffScore  Preference");
   console.log("  ────                  ────────  ────────  ──────────");
-  // Show best attackers first
   const sortedOff = [...offenders].sort((a, b) => (b.offRaw ?? 0) - (a.offRaw ?? 0));
   for (const t of sortedOff) {
     const ds = t.defRaw !== undefined ? String(t.defRaw) : "—";
     const os = t.offRaw !== undefined ? t.offRaw.toFixed(1) : "—";
     const pf = t.pref.toFixed(2);
     console.log(`  ${t.name.padEnd(22)} ${ds.padStart(6)}  ${os.padStart(8)}  ${pf.padStart(10)}`);
+  }
+
+  // =========================================================================
+  // Meta coverage report
+  // =========================================================================
+
+  console.log("\n=== META COVERAGE (popular defenses from ranking.json) ===");
+  console.log("Matches each popular defense against your offense teams (>70% win rate).\n");
+
+  for (const popDef of popularDefenses) {
+    const counters = popularCounters[popDef] || [];
+
+    if (counters.length === 0) {
+      console.log(`  ${popDef}:  ⚠ NO RELIABLE COUNTER FOUND (no attacker >70% win rate)`);
+      continue;
+    }
+
+    const offCounters = counters.filter((c) => offNames.has(c.attackerId));
+    const defCounters = counters.filter((c) => defNames.has(c.attackerId));
+
+    // Best counter that's on offense
+    const bestOff = offCounters.length > 0 ? offCounters[0] : null;
+    // Best counter that's on defense (would need to be freed up)
+    const bestDef = defCounters.length > 0 ? defCounters[0] : null;
+
+    function fmtCounter(c) {
+      return `${c.attackerId}(${(c.winRate * 100).toFixed(0)}%/${c.totalBattles})`;
+    }
+
+    if (bestOff) {
+      const extras = offCounters.slice(1).map(fmtCounter).join(", ");
+      const extraStr = extras ? `  Also: ${extras}` : "";
+      console.log(`  ${popDef}:  ${fmtCounter(bestOff)}${extraStr}`);
+    } else if (bestDef) {
+      console.log(`  ${popDef}:  ${fmtCounter(bestDef)} — ON DEFENSE (consider manual swap)`);
+    } else {
+      console.log(`  ${popDef}:  ⚠ NO RELIABLE COUNTER FOUND`);
+    }
+  }
+
+  // Uncovered summary
+  const stillUncovered = popularDefenses.filter((pd) => {
+    const counters = popularCounters[pd] || [];
+    return !counters.some((c) => offNames.has(c.attackerId));
+  });
+
+  if (stillUncovered.length > 0) {
+    console.log(`\n⚠ ${stillUncovered.length} popular defense(s) NOT covered by your offense:`);
+    for (const pd of stillUncovered) {
+      const counters = popularCounters[pd] || [];
+      if (counters.length > 0) {
+        const all = counters.map((c) => `${c.attackerId} (${(c.winRate * 100).toFixed(0)}%/${c.totalBattles}) on defense`).join(", ");
+        console.log(`   ${pd}: counters exist but all on defense — ${all}`);
+      } else {
+        console.log(`   ${pd}: no counter with >${(WIN_RATE_THRESHOLD * 100).toFixed(0)}% WR and ≥${MIN_COUNTER_BATTLES} battles in your roster`);
+      }
+    }
+  }
+
+  // =========================================================================
+  // Unique assignment check (bipartite matching)
+  // Each offense team can only be used once. Can all popular defenses be
+  // assigned a unique counter simultaneously?
+  // =========================================================================
+
+  function maxBipartiteMatch(adj, nRight) {
+    const matchR = new Array(nRight).fill(-1);
+    function dfs(u, seen) {
+      for (const v of adj[u]) {
+        if (seen[v]) continue;
+        seen[v] = true;
+        if (matchR[v] === -1 || dfs(matchR[v], seen)) {
+          matchR[v] = u;
+          return true;
+        }
+      }
+      return false;
+    }
+    let matched = 0;
+    for (let u = 0; u < adj.length; u++) {
+      if (dfs(u, new Array(nRight).fill(false))) matched++;
+    }
+    return { matchR, matched };
+  }
+
+  const offArray = [...offNames];
+  const popDefsWithCounters = [];
+  const adj = [];
+
+  for (const popDef of popularDefenses) {
+    const counters = popularCounters[popDef] || [];
+    const offCounters = counters.filter((c) => offNames.has(c.attackerId));
+    if (offCounters.length > 0) {
+      adj.push(offCounters.map((c) => offArray.indexOf(c.attackerId)).filter((i) => i >= 0));
+      popDefsWithCounters.push(popDef);
+    }
+  }
+
+  const { matchR, matched } = maxBipartiteMatch(adj, offArray.length);
+
+  console.log(`\n=== UNIQUE ASSIGNMENT ===`);
+  console.log(`Each offense team can only be used once.`);
+  console.log(`Matched ${matched} / ${popularDefenses.length} popular defenses to distinct offense teams:\n`);
+
+  const assignedDefs = new Set();
+  for (let v = 0; v < matchR.length; v++) {
+    if (matchR[v] !== -1) {
+      const def = popDefsWithCounters[matchR[v]];
+      const atk = offArray[v];
+      const c = popularCounters[def].find((x) => x.attackerId === atk);
+      console.log(`  ${def.padEnd(22)} → ${atk.padEnd(24)} (${(c.winRate * 100).toFixed(0)}%/${c.totalBattles})`);
+      assignedDefs.add(def);
+    }
+  }
+
+  const unassigned = popularDefenses.filter((d) => !assignedDefs.has(d));
+  if (unassigned.length > 0) {
+    console.log(`\n  ⚠ ${unassigned.length} defense(s) could not be assigned unique counters:`);
+    for (const pd of unassigned) {
+      const counters = (popularCounters[pd] || []).filter((c) => offNames.has(c.attackerId));
+      if (counters.length === 0) {
+        console.log(`    ${pd}: no qualifying counter on offense`);
+      } else {
+        const names = counters.map((c) => c.attackerId).join(", ");
+        console.log(`    ${pd}: counters (${names}) already taken by other defenses`);
+      }
+    }
   }
 }
 
